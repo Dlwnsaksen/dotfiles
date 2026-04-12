@@ -1,0 +1,9 @@
+width=500
+lines=8
+location=center
+show=drun
+allow_images=true
+insensitive=true
+no_actions=true
+hide_scroll=true
+term=foot

@@ -1,0 +1,34 @@
+# swaylock config
+
+daemonize
+show-failed-attempts
+ignore-empty-password
+
+# Colors
+color=1e1e2e
+inside-color=1e1e2e
+ring-color=89b4fa
+key-hl-color=a6e3a1
+bs-hl-color=f38ba8
+line-color=00000000
+separator-color=00000000
+
+inside-ver-color=313244
+ring-ver-color=f9e2af
+inside-wrong-color=313244
+ring-wrong-color=f38ba8
+
+text-color=cdd6f4
+text-ver-color=f9e2af
+text-wrong-color=f38ba8
+text-clear-color=a6adc8
+
+# Font
+font=JetBrainsMono Nerd Font
+font-size=16
+
+# Image (optional — uncomment and set path)
+# image=~/.config/sway/wallpaper
+
+indicator-radius=80
+indicator-thickness=6

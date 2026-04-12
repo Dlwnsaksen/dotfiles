@@ -1,0 +1,8 @@
+# Secrets / local overrides
+config/sway/conf.d/local.conf
+*.bak
+*.secret
+
+# Wallpaper (add your own)
+config/sway/wallpaper
+config/sway/wallpaper.*

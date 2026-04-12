@@ -1,0 +1,103 @@
+# ============================================================
+# Core System
+# ============================================================
+base
+base-devel
+linux
+linux-firmware
+sudo
+networkmanager
+iwd
+wireless-regdb
+openssh
+bluez
+bluez-utils
+
+# ============================================================
+# Sway Desktop
+# ============================================================
+sway
+swaylock
+swayidle
+swaync
+waybar
+xdg-desktop-portal-wlr
+xdg-desktop-portal-gtk
+xdg-user-dirs
+polkit
+polkit-qt5
+
+# ============================================================
+# Display / GPU
+# ============================================================
+mesa
+
+# ============================================================
+# Audio
+# ============================================================
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+wireplumber
+
+# ============================================================
+# Input Method (Korean)
+# ============================================================
+fcitx5
+fcitx5-hangul
+fcitx5-qt
+fcitx5-configtool
+
+# ============================================================
+# Apps
+# ============================================================
+foot
+nautilus
+wofi
+hyprpicker
+brightnessctl
+playerctl
+grim
+slurp
+swappy
+wl-clipboard
+cliphist
+gpu-screen-recorder
+app2unit
+inotify-tools
+trash-cli
+ddcutil
+
+# ============================================================
+# Fonts
+# ============================================================
+ttf-jetbrains-mono-nerd
+ttf-cascadia-code-nerd
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-liberation
+
+# ============================================================
+# Shell / CLI
+# ============================================================
+fish
+tmux
+git
+vim
+wget
+curl
+jq
+eza
+fastfetch
+starship
+btop
+
+# ============================================================
+# Dev Tools
+# ============================================================
+gcc
+cmake
+make
+python
+python-pip

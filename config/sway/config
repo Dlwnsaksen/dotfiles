@@ -1,0 +1,260 @@
+# ============================================================
+# Sway Configuration
+# ============================================================
+
+# ========================
+# Variables
+# ========================
+set $mod Mod4
+
+set $terminal foot
+set $browser brave
+set $editor code
+set $fileExplorer nautilus
+set $menu wofi --show drun --allow-images --prompt "Search"
+
+set $scripts ~/.config/sway/scripts
+
+# ========================
+# Colors  (edit here to theme)
+# ========================
+set $bg        #1e1e2e
+set $surface   #313244
+set $primary   #89b4fa
+set $text      #cdd6f4
+set $subtext   #a6adc8
+set $inactive  #45475a
+set $urgent    #f38ba8
+
+# ========================
+# Output / Wallpaper
+# ========================
+output * bg ~/.config/sway/wallpaper fill
+
+# ========================
+# Input
+# ========================
+input "type:keyboard" {
+    xkb_layout us
+    xkb_options korean:ralt_hangul
+    repeat_delay 250
+    repeat_rate 35
+}
+
+input "type:touchpad" {
+    natural_scroll enabled
+    dwt enabled
+    scroll_factor 0.3
+    tap enabled
+    pointer_accel 0
+}
+
+# ========================
+# Appearance
+# ========================
+gaps inner 5
+gaps outer 10
+default_border pixel 1
+default_floating_border pixel 1
+smart_gaps on
+smart_borders on
+
+# Window colors:         border     background  text    indicator  child_border
+client.focused           $primary   $surface    $text   $primary   $primary
+client.focused_inactive  $inactive  $bg         $text   $inactive  $inactive
+client.unfocused         $inactive  $bg         $text   $inactive  $inactive
+client.urgent            $urgent    $urgent     $text   $urgent    $urgent
+
+font pango:JetBrainsMono Nerd Font 10
+
+# ========================
+# Autostart
+# ========================
+exec_always ~/.config/sway/scripts/autostart.sh
+
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec trash-empty 30
+exec gnome-keyring-daemon --start --components=secrets
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# ========================
+# Keybinds — Apps
+# ========================
+bindsym $mod+t exec app2unit -- $terminal
+bindsym $mod+w exec app2unit -- $browser
+bindsym $mod+c exec app2unit -- $editor
+bindsym $mod+e exec app2unit -- $fileExplorer
+
+# Launcher
+bindsym $mod+space exec pkill -x wofi || $menu
+
+# ========================
+# Keybinds — Utilities
+# ========================
+# Screenshot
+bindsym Print        exec $scripts/screenshot.sh screen
+bindsym $mod+Shift+s exec $scripts/screenshot.sh region
+
+# Screen recording
+bindsym $mod+Alt+r       exec $scripts/record.sh sound
+bindsym Ctrl+Alt+r       exec $scripts/record.sh
+bindsym $mod+Shift+Alt+r exec $scripts/record.sh region
+
+# Clipboard
+bindsym $mod+v exec pkill -x wofi || cliphist list | wofi --dmenu --prompt "Clipboard" | cliphist decode | wl-copy
+
+# Color picker
+bindsym $mod+Shift+c exec hyprpicker -a
+
+# Session / Power menu
+bindsym Ctrl+Alt+Delete exec $scripts/session.sh
+
+# Lock
+bindsym $mod+l exec swaylock
+
+# Suspend
+bindsym $mod+Shift+l exec systemctl suspend-then-hibernate
+
+# Volume
+bindsym XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-
+bindsym $mod+Shift+m         exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+# Media
+bindsym XF86AudioPlay   exec playerctl play-pause
+bindsym XF86AudioPause  exec playerctl play-pause
+bindsym XF86AudioNext   exec playerctl next
+bindsym XF86AudioPrev   exec playerctl previous
+bindsym XF86AudioStop   exec playerctl stop
+bindsym Ctrl+$mod+space exec playerctl play-pause
+bindsym Ctrl+$mod+equal exec playerctl next
+bindsym Ctrl+$mod+minus exec playerctl previous
+
+# Brightness
+bindsym XF86MonBrightnessUp   exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Notifications
+bindsym Ctrl+Alt+c exec swaync-client -C  # Clear all
+
+# ========================
+# Keybinds — Windows
+# ========================
+bindsym $mod+q      kill
+bindsym $mod+f      fullscreen
+bindsym $mod+Alt+f  fullscreen disable; floating toggle; resize set 55 ppt 70 ppt; move position center
+bindsym $mod+Alt+space floating toggle
+bindsym $mod+p      sticky toggle  # Pin floating window
+
+# Focus
+bindsym $mod+Left  focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up    focus up
+bindsym $mod+Down  focus down
+
+# Move
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Down  move down
+
+# Resize mode
+mode "resize" {
+    bindsym Left  resize shrink width  5 px or 5 ppt
+    bindsym Right resize grow   width  5 px or 5 ppt
+    bindsym Up    resize shrink height 5 px or 5 ppt
+    bindsym Down  resize grow   height 5 px or 5 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Center window
+bindsym Ctrl+$mod+backslash move position center
+
+# Split direction
+bindsym $mod+b splith
+bindsym $mod+n splitv
+
+# Layout toggle
+bindsym $mod+Tab layout toggle split tabbed
+
+# ========================
+# Keybinds — Workspaces
+# ========================
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Alt+1 move container to workspace number 1; workspace number 1
+bindsym $mod+Alt+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Alt+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Alt+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Alt+5 move container to workspace number 5; workspace number 5
+bindsym $mod+Alt+6 move container to workspace number 6; workspace number 6
+bindsym $mod+Alt+7 move container to workspace number 7; workspace number 7
+bindsym $mod+Alt+8 move container to workspace number 8; workspace number 8
+bindsym $mod+Alt+9 move container to workspace number 9; workspace number 9
+bindsym $mod+Alt+0 move container to workspace number 10; workspace number 10
+
+bindsym Ctrl+$mod+Right workspace next_on_output
+bindsym Ctrl+$mod+Left  workspace prev_on_output
+
+# ========================
+# Scratchpads
+# ========================
+# System monitor (btop)
+bindsym Ctrl+Shift+Escape exec $scripts/scratchpad.sh sysmon "foot --app-id=sysmon btop"
+
+# Music player
+bindsym $mod+m exec $scripts/scratchpad.sh music
+
+# Communication (discord/equibop)
+bindsym $mod+d exec $scripts/scratchpad.sh communication
+
+# ========================
+# Window Rules
+# ========================
+for_window [app_id="blueman-manager"]          floating enable
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, resize set 60 ppt 70 ppt, move position center
+for_window [app_id="org.gnome.Settings"]       floating enable, resize set 70 ppt 80 ppt, move position center
+for_window [app_id="nwg-look"]                 floating enable, resize set 50 ppt 60 ppt, move position center
+for_window [app_id="org.gnome.FileRoller"]     floating enable
+for_window [app_id="file-roller"]              floating enable
+for_window [app_id="yad"]                      floating enable
+for_window [app_id="zenity"]                   floating enable
+for_window [app_id="feh"]                      floating enable
+for_window [app_id="imv"]                      floating enable
+for_window [app_id="swappy"]                   floating enable
+
+for_window [app_id="foot" title="nmtui"]       floating enable, resize set 60 ppt 70 ppt, move position center
+
+for_window [title="Picture-in-Picture"]        floating enable, sticky enable
+
+for_window [app_id="sysmon"]                   move scratchpad, scratchpad show
+
+# Float dialogs
+for_window [title="^(Select|Open)( a)? (File|Folder)(s)?$"] floating enable
+for_window [title="^Save As$"]                 floating enable
+for_window [title="^.* Properties$"]           floating enable
+
+# ========================
+# XWayland
+# ========================
+xwayland enable
+
+# ========================
+# Local overrides
+# ========================
+include ~/.config/sway/conf.d/*.conf
