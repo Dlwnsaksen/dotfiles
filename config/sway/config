@@ -8,7 +8,7 @@
 set $mod Mod4
 
 set $terminal foot
-set $browser brave
+set $browser google-chrome-stable
 set $editor code
 set $fileExplorer nautilus
 set $menu wofi --show drun --allow-images --prompt "Search"
@@ -81,10 +81,10 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # ========================
 # Keybinds — Apps
 # ========================
-bindsym $mod+t exec app2unit -- $terminal
-bindsym $mod+w exec app2unit -- $browser
-bindsym $mod+c exec app2unit -- $editor
-bindsym $mod+e exec app2unit -- $fileExplorer
+bindsym $mod+t exec $terminal
+bindsym $mod+w exec $browser
+bindsym $mod+c exec $editor
+bindsym $mod+e exec $fileExplorer
 
 # Launcher
 bindsym $mod+space exec pkill -x wofi || $menu
