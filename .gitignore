@@ -6,3 +6,9 @@ config/sway/conf.d/local.conf
 # Wallpaper (add your own)
 config/sway/wallpaper
 config/sway/wallpaper.*
+
+# Runtime-generated state inside tracked config dirs
+config/fcitx5/conf/cached_layouts
+config/fcitx5/conf/*.conf_*
+config/gtk-3.0/bookmarks
+config/btop/btop.log

@@ -1,0 +1,31 @@
+# name: 'Paper Ink'
+# Chrome Gray: neutral grays + Chrome blue accent (#8ab4f8) on dark gray bg
+# preferred_background: 2b2b2b
+
+fish_color_normal e0e0e0
+fish_color_command f0f0f0
+fish_color_keyword 8ab4f8
+fish_color_quote b0c0a8
+fish_color_redirection aac8ff
+fish_color_end 909090
+fish_color_error e08a84
+fish_color_param c4c4c4
+fish_color_comment 808080
+fish_color_selection --background=545454
+fish_color_search_match --background=4a5a72
+fish_color_operator aac8ff
+fish_color_escape c9b88f
+fish_color_autosuggestion 6a6a6a
+fish_color_cwd 8ab4f8
+fish_color_cwd_root e08a84
+fish_color_user c4c4c4
+fish_color_host b0c0a8
+fish_color_host_remote 8ac0c8
+fish_color_cancel -r
+fish_color_valid_path --underline
+
+fish_pager_color_progress 909090
+fish_pager_color_prefix 8ab4f8 --bold
+fish_pager_color_completion e0e0e0
+fish_pager_color_description 808080
+fish_pager_color_selected_background --background=545454

@@ -1,0 +1,83 @@
+# Minecraft Alpha wallpaper inspired theme
+# Colors derived from: dark forest floor, foggy sky, bright grass, dirt/sand tones
+
+# Main background - dark forest floor
+theme[main_bg]="#1C2A14"
+
+# Main text - foggy sky light
+theme[main_fg]="#C8D8B8"
+
+# Title color
+theme[title]="#D8ECCC"
+
+# Highlight - golden sand/wheat accent
+theme[hi_fg]="#E8C850"
+
+# Background of selected items - slightly lighter forest
+theme[selected_bg]="#2C3E1E"
+
+# Foreground of selected items - bright grass green
+theme[selected_fg]="#7EC840"
+
+# Inactive text - blends into background
+theme[inactive_fg]="#2C3E1E"
+
+# Text on graphs - foggy light
+theme[graph_text]="#C0D0B0"
+
+# Process box misc - grass green
+theme[proc_misc]="#5CA830"
+
+# Box outlines - dark mossy green
+theme[cpu_box]="#3C5028"
+theme[mem_box]="#3C5028"
+theme[net_box]="#3C5028"
+theme[proc_box]="#3C5028"
+
+# Divider lines
+theme[div_line]="#304220"
+
+# Temperature: cool green -> warm yellow -> hot red
+theme[temp_start]="#5CA830"
+theme[temp_mid]="#E8C850"
+theme[temp_end]="#C83020"
+
+# CPU graph: dark green -> bright grass -> warning red
+theme[cpu_start]="#4A9020"
+theme[cpu_mid]="#A8C030"
+theme[cpu_end]="#C83020"
+
+# Mem/Disk free meter: low(red) -> mid(yellow) -> high(green)
+theme[free_start]="#C83020"
+theme[free_mid]="#E8C850"
+theme[free_end]="#5CA830"
+
+# Cached - fog blue tones
+theme[cached_start]="#7EBCC0"
+theme[cached_mid]="#90C0C8"
+theme[cached_end]="#A8D0D8"
+
+# Available meter
+theme[available_start]="#C83020"
+theme[available_mid]="#E8C850"
+theme[available_end]="#5CA830"
+
+# Used meter
+theme[used_start]="#5CA830"
+theme[used_mid]="#E8C850"
+theme[used_end]="#C83020"
+
+# Download - grass green to fog sky blue
+theme[download_start]="#5CA830"
+theme[download_mid]="#7EBCC0"
+theme[download_end]="#90C8D0"
+
+# Upload - dirt brown to sandy warm
+theme[upload_start]="#A07830"
+theme[upload_mid]="#C89040"
+theme[upload_end]="#E8A840"
+
+# Process bar gradient
+theme[process_start]="#5CA830"
+theme[process_mid]="#E8C850"
+theme[process_end]="#C83020"

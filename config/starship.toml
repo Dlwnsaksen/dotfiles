@@ -1,0 +1,68 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Chrome Gray — neutral grays + Chrome blue accent, matched to the Chrome window
+# Palette: blue 8ab4f8 · light-gray e0e0e0 · gray 9aa6b0 · sage b0c0a8
+#          red e08a84 · dim 808080 · sand c9b88f
+
+add_newline = true
+
+[directory]
+style = "bold #8ab4f8"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+style = "#b0c0a8"
+
+[git_status]
+style = "#e08a84"
+
+[git_state]
+style = "#c9b88f"
+
+[cmd_duration]
+min_time = 500
+style = "#808080"
+
+[character]
+success_symbol = "[❯](#cccccc)"
+error_symbol = "[❯](#e08a84)"
+vimcmd_symbol = "[❮](#8ab4f8)"
+
+[hostname]
+style = "#b0c0a8"
+
+[username]
+style_user = "#c4c4c4"
+style_root = "bold #e08a84"
+
+# Language / runtime modules — unified neutral tones, no rainbow
+[python]
+style = "#9aa6b0"
+
+[nodejs]
+style = "#9aa6b0"
+
+[rust]
+style = "#c9b88f"
+
+[golang]
+style = "#9aa6b0"
+
+[lua]
+style = "#9aa6b0"
+
+[c]
+style = "#9aa6b0"
+
+[nix_shell]
+style = "#8ab4f8"
+
+[package]
+style = "#8ab4f8"
+
+[docker_context]
+style = "#9aa6b0"
+
+[time]
+style = "#808080"

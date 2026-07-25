@@ -1,0 +1,66 @@
+#? Chrome Gray — neutral grays + Chrome blue accent (#8ab4f8)
+#  Matches the foot/fish/starship "Chrome Gray" theme.
+
+# Main background (used only when theme_background=True; kept in sync with foot)
+theme[main_bg]="#2b2b2b"
+# Main text
+theme[main_fg]="#e0e0e0"
+# Title text
+theme[title]="#e0e0e0"
+# Highlight / accent
+theme[hi_fg]="#8ab4f8"
+# Selection
+theme[selected_bg]="#545454"
+theme[selected_fg]="#f0f0f0"
+# Dimmed text
+theme[inactive_fg]="#6a6a6a"
+# Text on graphs
+theme[graph_text]="#909090"
+# Background of meters
+theme[meter_bg]="#3c3c3c"
+# Misc process accents
+theme[proc_misc]="#8ab4f8"
+
+# Box outlines
+theme[cpu_box]="#545454"
+theme[mem_box]="#545454"
+theme[net_box]="#545454"
+theme[proc_box]="#545454"
+theme[div_line]="#545454"
+
+# Temperature gradient (cool -> warm -> hot, keeps a heat warning)
+theme[temp_start]="#8ab4f8"
+theme[temp_mid]="#c9b88f"
+theme[temp_end]="#e08a84"
+
+# CPU usage gradient — on-theme blue ramp
+theme[cpu_start]="#aac8ff"
+theme[cpu_mid]="#8ab4f8"
+theme[cpu_end]="#5a82c0"
+
+# Memory: free / cached / available / used — blue ramp
+theme[free_start]="#aac8ff"
+theme[free_mid]="#8ab4f8"
+theme[free_end]="#5a82c0"
+theme[cached_start]="#aac8ff"
+theme[cached_mid]="#8ab4f8"
+theme[cached_end]="#5a82c0"
+theme[available_start]="#aac8ff"
+theme[available_mid]="#8ab4f8"
+theme[available_end]="#5a82c0"
+theme[used_start]="#aac8ff"
+theme[used_mid]="#8ab4f8"
+theme[used_end]="#5a82c0"
+
+# Network up/down — blue ramp
+theme[download_start]="#aac8ff"
+theme[download_mid]="#8ab4f8"
+theme[download_end]="#5a82c0"
+theme[upload_start]="#aac8ff"
+theme[upload_mid]="#8ab4f8"
+theme[upload_end]="#5a82c0"
+
+# Process CPU gradient
+theme[process_start]="#aac8ff"
+theme[process_mid]="#8ab4f8"
+theme[process_end]="#5a82c0"
