@@ -1,9 +1,9 @@
 #!/bin/bash
-# Session / power menu via wofi
+# Session / power menu via fuzzel
 
 OPTIONS="  Lock\n  Suspend\n  Hibernate\n󰜉  Reboot\n  Shutdown\n  Logout"
 
-CHOICE=$(echo -e "$OPTIONS" | wofi --dmenu --prompt "Session" --lines 6 --width 200)
+CHOICE=$(echo -e "$OPTIONS" | fuzzel --dmenu --prompt "Session " --lines 6 --width 20)
 
 case "$CHOICE" in
     *"Lock")       swaylock ;;

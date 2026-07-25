@@ -1,6 +1,6 @@
 # AUR packages (installed via paru)
 paru
-brave-bin
+google-chrome
 visual-studio-code-bin
 obsidian-appimage
-gpu-screen-recorder
+app2unit

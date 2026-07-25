@@ -32,8 +32,15 @@ grep -v '^#' "$DOTFILES_DIR/aur-packages.txt" | grep -v '^$' | \
 # ── 2. Link configs ───────────────────────────────────────
 section "Linking config files"
 
+# link <source> <destination>
+#   Works for both files and directories. An existing real (non-symlink)
+#   target is moved aside to <destination>.bak instead of being clobbered.
 link() {
     local src="$1" dst="$2"
+    if [ ! -e "$src" ]; then
+        warn "Skipping (missing in repo): $src"
+        return
+    fi
     mkdir -p "$(dirname "$dst")"
     if [ -e "$dst" ] && [ ! -L "$dst" ]; then
         warn "Backing up existing: $dst → $dst.bak"
@@ -43,18 +50,53 @@ link() {
     info "Linked: $dst"
 }
 
-link "$CONFIG_DIR/sway"      ~/.config/sway
-link "$CONFIG_DIR/waybar"    ~/.config/waybar
-link "$CONFIG_DIR/wofi"      ~/.config/wofi
-link "$CONFIG_DIR/swaylock"  ~/.config/swaylock
-link "$CONFIG_DIR/swaync"    ~/.config/swaync
-link "$CONFIG_DIR/foot"      ~/.config/foot
-link "$CONFIG_DIR/fish"      ~/.config/fish
-link "$CONFIG_DIR/btop"      ~/.config/btop
-link "$CONFIG_DIR/fastfetch" ~/.config/fastfetch
+# ── Whole directories ────────────────────────────────────
+# Safe to link wholesale: nothing else writes into these.
+link "$CONFIG_DIR/sway"           ~/.config/sway
+link "$CONFIG_DIR/swaylock"       ~/.config/swaylock
+link "$CONFIG_DIR/foot"           ~/.config/foot
+link "$CONFIG_DIR/fish"           ~/.config/fish
+link "$CONFIG_DIR/fuzzel"         ~/.config/fuzzel
+link "$CONFIG_DIR/btop"           ~/.config/btop
+link "$CONFIG_DIR/environment.d"  ~/.config/environment.d
 
-if [ -f "$CONFIG_DIR/starship.toml" ]; then
-    link "$CONFIG_DIR/starship.toml" ~/.config/starship.toml
+# ── Individual files ─────────────────────────────────────
+# These directories also collect runtime-generated files (GTK bookmarks,
+# swaync's own config.json, fcitx5's layout cache …), so only the tracked
+# files get linked — linking the whole directory would drag that generated
+# state into the repo.
+link "$CONFIG_DIR/starship.toml"        ~/.config/starship.toml
+link "$CONFIG_DIR/mimeapps.list"        ~/.config/mimeapps.list
+
+link "$CONFIG_DIR/swaync/style.css"     ~/.config/swaync/style.css
+
+link "$CONFIG_DIR/gtk-3.0/settings.ini" ~/.config/gtk-3.0/settings.ini
+link "$CONFIG_DIR/gtk-3.0/gtk.css"      ~/.config/gtk-3.0/gtk.css
+link "$CONFIG_DIR/gtk-4.0/settings.ini" ~/.config/gtk-4.0/settings.ini
+link "$CONFIG_DIR/gtk-4.0/gtk.css"      ~/.config/gtk-4.0/gtk.css
+
+link "$CONFIG_DIR/fcitx5/config"                  ~/.config/fcitx5/config
+link "$CONFIG_DIR/fcitx5/profile"                 ~/.config/fcitx5/profile
+link "$CONFIG_DIR/fcitx5/conf/hangul.conf"        ~/.config/fcitx5/conf/hangul.conf
+link "$CONFIG_DIR/fcitx5/conf/notifications.conf" ~/.config/fcitx5/conf/notifications.conf
+
+link "$CONFIG_DIR/easyeffects/db/easyeffectsrc"   ~/.config/easyeffects/db/easyeffectsrc
+link "$CONFIG_DIR/easyeffects/db/equalizerrc"     ~/.config/easyeffects/db/equalizerrc
+
+# AMD SoundWire headroom fix (LG gram — RT713/RT1320 on ACP 7.0)
+link "$CONFIG_DIR/wireplumber/wireplumber.conf.d/51-amd-sdw-headroom.conf" \
+     ~/.config/wireplumber/wireplumber.conf.d/51-amd-sdw-headroom.conf
+
+# ── 2b. Autostart entries ────────────────────────────────
+# XDG autostart launcher, not a config file — copied, not linked.
+section "Installing autostart entries"
+mkdir -p ~/.config/autostart
+if [ -f /usr/share/applications/org.fcitx.Fcitx5.desktop ]; then
+    cp -n /usr/share/applications/org.fcitx.Fcitx5.desktop \
+          ~/.config/autostart/fcitx5.desktop || true
+    info "Autostart: fcitx5"
+else
+    warn "fcitx5 desktop entry not found — skipped"
 fi
 
 # ── 3. Script permissions ────────────────────────────────
@@ -85,4 +127,6 @@ fi
 
 echo -e "\n${GREEN}✓ Install complete!${NC}"
 echo "  → Log in to Sway via your display manager"
-echo "  → Edit ~/.config/sway/config to customize"
+echo "  → Wallpaper: place your own at ~/.config/sway/wallpaper"
+echo "  → config/fish/fish_variables pins fish_user_paths to absolute"
+echo "    /home/zzunmin paths — edit it if your username differs"

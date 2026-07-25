@@ -20,7 +20,7 @@ sway
 swaylock
 swayidle
 swaync
-waybar
+fuzzel
 xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
 xdg-user-dirs
@@ -40,6 +40,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 wireplumber
+easyeffects
 
 # ============================================================
 # Input Method (Korean)
@@ -54,7 +55,7 @@ fcitx5-configtool
 # ============================================================
 foot
 nautilus
-wofi
+scrcpy
 hyprpicker
 brightnessctl
 playerctl
@@ -64,10 +65,16 @@ swappy
 wl-clipboard
 cliphist
 gpu-screen-recorder
-app2unit
 inotify-tools
 trash-cli
 ddcutil
+
+# ============================================================
+# Theme (Chrome Gray — GTK 3/4 + icons)
+# ============================================================
+adw-gtk-theme
+papirus-icon-theme
+libnotify
 
 # ============================================================
 # Fonts
