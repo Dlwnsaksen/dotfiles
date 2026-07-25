@@ -1,3 +1,7 @@
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYLOCK XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYLOCK XDG_CURRENT_DESKTOP=sway
+
+
 # ============================================================
 # Sway Configuration
 # ============================================================
@@ -11,25 +15,25 @@ set $terminal foot
 set $browser google-chrome-stable
 set $editor code
 set $fileExplorer nautilus
-set $menu wofi --show drun --allow-images --prompt "Search"
+set $menu fuzzel
 
 set $scripts ~/.config/sway/scripts
 
 # ========================
 # Colors  (edit here to theme)
 # ========================
-set $bg        #1e1e2e
-set $surface   #313244
-set $primary   #89b4fa
-set $text      #cdd6f4
-set $subtext   #a6adc8
-set $inactive  #45475a
-set $urgent    #f38ba8
+set $bg        #2b2b2b
+set $surface   #333333
+set $primary   #8ab4f8
+set $text      #e0e0e0
+set $subtext   #808080
+set $inactive  #3c3c3c
+set $urgent    #e08a84
 
 # ========================
 # Output / Wallpaper
 # ========================
-output * bg ~/.config/sway/wallpaper fill
+output * bg ~/Downloads/wallpaper.png fill
 
 # ========================
 # Input
@@ -47,6 +51,7 @@ input "type:touchpad" {
     scroll_factor 0.3
     tap enabled
     pointer_accel 0
+    events disabled
 }
 
 # ========================
@@ -54,8 +59,8 @@ input "type:touchpad" {
 # ========================
 gaps inner 5
 gaps outer 10
-default_border pixel 1
-default_floating_border pixel 1
+default_border none
+default_floating_border normal 4
 smart_gaps on
 smart_borders on
 
@@ -70,6 +75,7 @@ font pango:JetBrainsMono Nerd Font 10
 # ========================
 # Autostart
 # ========================
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY DBUS_SESSION_BUS_ADDRESS
 exec_always ~/.config/sway/scripts/autostart.sh
 
 exec wl-paste --type text --watch cliphist store
@@ -87,7 +93,7 @@ bindsym $mod+c exec $editor
 bindsym $mod+e exec $fileExplorer
 
 # Launcher
-bindsym $mod+space exec pkill -x wofi || $menu
+bindsym $mod+space exec pkill -x fuzzel || $menu
 
 # ========================
 # Keybinds — Utilities
@@ -102,7 +108,7 @@ bindsym Ctrl+Alt+r       exec $scripts/record.sh
 bindsym $mod+Shift+Alt+r exec $scripts/record.sh region
 
 # Clipboard
-bindsym $mod+v exec pkill -x wofi || cliphist list | wofi --dmenu --prompt "Clipboard" | cliphist decode | wl-copy
+bindsym $mod+v exec pkill -x fuzzel || cliphist list | fuzzel --dmenu --prompt "Clipboard" | cliphist decode | wl-copy
 
 # Color picker
 bindsym $mod+Shift+c exec hyprpicker -a
@@ -112,6 +118,9 @@ bindsym Ctrl+Alt+Delete exec $scripts/session.sh
 
 # Lock
 bindsym $mod+l exec swaylock
+
+# Touchpad toggle
+bindsym $mod+Shift+t exec $scripts/touchpad.sh
 
 # Suspend
 bindsym $mod+Shift+l exec systemctl suspend-then-hibernate
@@ -240,6 +249,10 @@ for_window [app_id="swappy"]                   floating enable
 
 for_window [app_id="foot" title="nmtui"]       floating enable, resize set 60 ppt 70 ppt, move position center
 
+for_window [app_id="google-chrome"]            opacity 0.8
+for_window [app_id="obsidian"]                 opacity 0.9
+for_window [class="obsidian"]                  opacity 0.9
+
 for_window [title="Picture-in-Picture"]        floating enable, sticky enable
 
 for_window [app_id="sysmon"]                   move scratchpad, scratchpad show
@@ -252,9 +265,10 @@ for_window [title="^.* Properties$"]           floating enable
 # ========================
 # XWayland
 # ========================
-xwayland enable
+xwayland yes
 
 # ========================
 # Local overrides
 # ========================
 include ~/.config/sway/conf.d/*.conf
+exec blueman-applet

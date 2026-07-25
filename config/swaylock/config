@@ -4,24 +4,24 @@ daemonize
 show-failed-attempts
 ignore-empty-password
 
-# Colors
-color=1e1e2e
-inside-color=1e1e2e
-ring-color=89b4fa
-key-hl-color=a6e3a1
-bs-hl-color=f38ba8
+# Colors — Chrome Gray (bg #2b2b2b, accent blue #8ab4f8)
+color=2b2b2b
+inside-color=2b2b2b
+ring-color=8ab4f8
+key-hl-color=aac8ff
+bs-hl-color=e08a84
 line-color=00000000
 separator-color=00000000
 
-inside-ver-color=313244
-ring-ver-color=f9e2af
-inside-wrong-color=313244
-ring-wrong-color=f38ba8
+inside-ver-color=3c3c3c
+ring-ver-color=c9b88f
+inside-wrong-color=3c3c3c
+ring-wrong-color=e08a84
 
-text-color=cdd6f4
-text-ver-color=f9e2af
-text-wrong-color=f38ba8
-text-clear-color=a6adc8
+text-color=e0e0e0
+text-ver-color=c9b88f
+text-wrong-color=e08a84
+text-clear-color=aac8ff
 
 # Font
 font=JetBrainsMono Nerd Font
