@@ -38,5 +38,6 @@ if status is-interactive
     end
 
 end
-alias telegram="/home/zzunmin/Applications/Telegram/Telegram/Telegram"
+alias telegram="$HOME/Applications/Telegram/Telegram/Telegram"
 fish_add_path $HOME/bin
+fish_add_path $HOME/.local/bin

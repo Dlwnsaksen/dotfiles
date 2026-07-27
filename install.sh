@@ -80,15 +80,10 @@ link "$CONFIG_DIR/fcitx5/profile"                 ~/.config/fcitx5/profile
 link "$CONFIG_DIR/fcitx5/conf/hangul.conf"        ~/.config/fcitx5/conf/hangul.conf
 link "$CONFIG_DIR/fcitx5/conf/notifications.conf" ~/.config/fcitx5/conf/notifications.conf
 
-link "$CONFIG_DIR/easyeffects/db/easyeffectsrc"   ~/.config/easyeffects/db/easyeffectsrc
-link "$CONFIG_DIR/easyeffects/db/equalizerrc"     ~/.config/easyeffects/db/equalizerrc
-
-# AMD SoundWire headroom fix (LG gram — RT713/RT1320 on ACP 7.0)
-link "$CONFIG_DIR/wireplumber/wireplumber.conf.d/51-amd-sdw-headroom.conf" \
-     ~/.config/wireplumber/wireplumber.conf.d/51-amd-sdw-headroom.conf
-
 # ── 2b. Autostart entries ────────────────────────────────
 # XDG autostart launcher, not a config file — copied, not linked.
+mkdir -p ~/.config/sway/conf.d
+
 section "Installing autostart entries"
 mkdir -p ~/.config/autostart
 if [ -f /usr/share/applications/org.fcitx.Fcitx5.desktop ]; then
@@ -101,7 +96,7 @@ fi
 
 # ── 3. Script permissions ────────────────────────────────
 section "Setting script permissions"
-chmod +x "$CONFIG_DIR/sway/scripts/"*.sh
+chmod +x "$CONFIG_DIR/sway/scripts/"*.sh 2>/dev/null || true
 
 # ── 4. Services ──────────────────────────────────────────
 section "Enabling system services"
@@ -128,5 +123,4 @@ fi
 echo -e "\n${GREEN}✓ Install complete!${NC}"
 echo "  → Log in to Sway via your display manager"
 echo "  → Wallpaper: place your own at ~/.config/sway/wallpaper"
-echo "  → config/fish/fish_variables pins fish_user_paths to absolute"
-echo "    /home/zzunmin paths — edit it if your username differs"
+echo "  → Host-specific tweaks go in ~/.config/sway/conf.d/*.conf"

@@ -40,7 +40,6 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 wireplumber
-easyeffects
 
 # ============================================================
 # Input Method (Korean)

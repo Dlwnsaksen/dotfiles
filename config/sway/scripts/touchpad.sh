@@ -1,15 +1,18 @@
 #!/bin/bash
-# Toggle touchpad on/off
+# Toggle touchpad on/off — device-agnostic (matches by type, not hardcoded ID)
 
-TOUCHPAD="1267:13030:PNP0C50:00_04F3:32E6_Touchpad"
+state=$(swaymsg -t get_inputs \
+    | jq -r 'first(.[] | select(.type == "touchpad") | .libinput.send_events)')
 
-state=$(swaymsg -t get_inputs | jq -r --arg id "$TOUCHPAD" \
-    '.[] | select(.identifier == $id) | .libinput.send_events')
+if [ -z "$state" ] || [ "$state" = "null" ]; then
+    notify-send -i input-touchpad "터치패드" "장치를 찾을 수 없음" -t 2000
+    exit 1
+fi
 
 if [ "$state" = "enabled" ]; then
-    swaymsg input "$TOUCHPAD" events disabled
+    swaymsg input type:touchpad events disabled
     notify-send -i input-touchpad-off "터치패드" "비활성화됨" -t 2000
 else
-    swaymsg input "$TOUCHPAD" events enabled
+    swaymsg input type:touchpad events enabled
     notify-send -i input-touchpad "터치패드" "활성화됨" -t 2000
 fi

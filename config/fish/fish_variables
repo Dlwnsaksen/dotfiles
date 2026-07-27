@@ -27,4 +27,3 @@ SETUVAR fish_pager_color_description:808080
 SETUVAR fish_pager_color_prefix:8ab4f8\x1e\x2d\x2dbold
 SETUVAR fish_pager_color_progress:909090
 SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d545454
-SETUVAR fish_user_paths:/home/zzunmin/bin\x1e/home/zzunmin/\x2elocal/bin
