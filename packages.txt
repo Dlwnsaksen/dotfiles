@@ -54,6 +54,11 @@ fcitx5-configtool
 # ============================================================
 foot
 nautilus
+blueman
+pavucontrol
+gnome-keyring
+polkit-gnome
+lazygit
 scrcpy
 hyprpicker
 brightnessctl

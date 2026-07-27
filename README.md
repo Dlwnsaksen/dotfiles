@@ -31,6 +31,7 @@ cd ~/dotfiles
 ## Wallpaper
 
 Place your wallpaper at `~/.config/sway/wallpaper` (any image format).
+`config/sway/config` 의 `output * bg` 줄이 이 경로를 참조합니다.
 
 ## Theme — "Chrome Gray"
 
@@ -47,13 +48,20 @@ Place your wallpaper at `~/.config/sway/wallpaper` (any image format).
 
 Qt 앱은 `config/environment.d/theme.conf`의 `QT_QPA_PLATFORMTHEME=gtk3`로 GTK 테마를 따라갑니다.
 
-## 하드웨어 고유 설정 (LG gram)
+## 새 기기로 옮길 때
 
-- `config/wireplumber/wireplumber.conf.d/51-amd-sdw-headroom.conf` — RT713/RT1320 SoundWire 헤드룸
-- `config/easyeffects/db/` — LG gram Windows 유사 EQ 프리셋
-- `config/sway/scripts/touchpad.sh` — 터치패드 토글 (기기 ID 하드코딩)
+하드웨어 고유 설정은 이 리포에서 모두 제거했습니다. 기기별 조정이 필요하면
+`~/.config/sway/conf.d/*.conf` 에 넣으세요 — sway config 마지막에서 include 되며,
+`config/sway/conf.d/local.conf` 는 .gitignore 대상입니다.
 
-다른 기기라면 이 세 가지는 조정이 필요합니다.
+새 기기 첫 부팅 후 확인할 것:
+
+- `swaymsg -t get_outputs` — 화면 이름/해상도/배율
+- `swaymsg -t get_inputs` — 터치패드 인식 여부
+- `lspci | grep -Ei 'vga|3d'` — GPU에 맞는 드라이버 추가 설치
+  (AMD `vulkan-radeon`, Intel `vulkan-intel intel-media-driver`)
+- `sudo usermod -aG video,input $USER` — 밝기 조절 권한
+- 오디오 EQ가 필요하면 `easyeffects` 를 직접 설치해 기기에 맞게 새로 설정
 
 ## Keybinds
 
